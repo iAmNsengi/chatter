@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const RouteLayout: React.FC = () => {
+const RootLayout: React.FC = () => {
   return <Outlet />;
 };
 
-export default RouteLayout;
+export default RootLayout;

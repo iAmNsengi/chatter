@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 import {
   ClerkProvider,
@@ -8,7 +7,9 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
-import { useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage.tsx";
+import RootLayout from "./layouts/RootLayout.tsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -27,12 +28,17 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <ProtectedRoute>
-        <App />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<RootLayout />}>
+              <Route index element={<HomePage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </ProtectedRoute>
     </ClerkProvider>
   </React.StrictMode>
