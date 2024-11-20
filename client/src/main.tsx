@@ -8,8 +8,8 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
-// Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
@@ -26,6 +26,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
+
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
