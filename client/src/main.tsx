@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import CreateServerModal from "./components/modals/CreateServerModal.tsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -38,7 +39,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<RootLayout />}>
-                <Route index element={<HomePage />} />
+                <Route
+                  index
+                  element={
+                    <>
+                      <CreateServerModal />
+                      <HomePage />
+                    </>
+                  }
+                />
               </Route>
             </Routes>
           </BrowserRouter>

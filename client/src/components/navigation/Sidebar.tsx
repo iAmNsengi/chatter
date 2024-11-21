@@ -7,9 +7,12 @@ import {
   IconPlus,
   IconSun,
 } from "@tabler/icons-react";
+import useModal from "../../hooks/useModal";
 
 const Sidebar = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const createServerModal = useModal("CreateServer");
+
   return (
     <nav className={classes.navbar}>
       <Center>
@@ -20,7 +23,7 @@ const Sidebar = () => {
           variant="subtle"
           radius={100}
           className={classes.link}
-          onClick={() => {}}
+          onClick={createServerModal.openModal}
         >
           <IconPlus radius={100} />
         </Button>
