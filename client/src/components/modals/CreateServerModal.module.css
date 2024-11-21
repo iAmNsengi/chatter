@@ -11,8 +11,8 @@
   transition: background-color 300ms ease;
   &:hover {
     background-color: light-dark(
-      var(--mantine-color-gray-2),
-      var(--mantine-color-dark-4)
+      var(--mantine-color-gray-5),
+      var(--mantine-color-dark-6)
     );
   }
 }

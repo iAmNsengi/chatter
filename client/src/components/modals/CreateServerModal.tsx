@@ -52,6 +52,9 @@ const CreateServerModal: React.FC = () => {
                   </Group>
                 </Dropzone>
               )}
+              {imagePreview && (
+                <Flex pos={"relative"} w={rem(150)} h={rem(150)} mt={"md"} />
+              )}
             </Flex>
           </Stack>
         </form>
