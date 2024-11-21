@@ -1,12 +1,20 @@
 import { UserButton } from "@clerk/clerk-react";
 import classes from "./Sidebar.module.css";
-import { Button, Center } from "@mantine/core";
-import { IconArrowsJoin, IconPlus } from "@tabler/icons-react";
+import { Button, Center, Stack, useMantineColorScheme } from "@mantine/core";
+import {
+  IconArrowsJoin,
+  IconMoon,
+  IconPlus,
+  IconSun,
+} from "@tabler/icons-react";
 
 const Sidebar = () => {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   return (
     <nav className={classes.navbar}>
-      <UserButton />
+      <Center>
+        <UserButton />
+      </Center>
       <Center>
         <Button
           variant="subtle"
@@ -18,10 +26,25 @@ const Sidebar = () => {
         </Button>
       </Center>
       <Center>
-        <Button variant="subtle" className={classes.link}>
+        <Button
+          variant="subtle"
+          radius={100}
+          className={classes.link}
+          onClick={() => {}}
+        >
           <IconArrowsJoin radius={100} />
         </Button>
       </Center>
+      <Stack justify="center" align="center">
+        <Button
+          className={classes.link}
+          variant="subtle"
+          onClick={toggleColorScheme}
+          radius={100}
+        >
+          {colorScheme === "dark" ? <IconMoon radius={100} /> : <IconSun />}
+        </Button>
+      </Stack>
     </nav>
   );
 };
