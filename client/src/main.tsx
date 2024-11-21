@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import RootLayout from "./layouts/RootLayout.tsx";
 import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -32,8 +33,8 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
-      <ProtectedRoute>
-        <MantineProvider>
+      <MantineProvider>
+        <ProtectedRoute>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<RootLayout />}>
@@ -41,8 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               </Route>
             </Routes>
           </BrowserRouter>
-        </MantineProvider>
-      </ProtectedRoute>
+        </ProtectedRoute>
+      </MantineProvider>
     </ClerkProvider>
   </React.StrictMode>
 );
