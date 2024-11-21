@@ -4,6 +4,7 @@ import useModal from "../../hooks/useModal";
 import { useForm } from "@mantine/form";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import classes from "./CreateServerModal.module.css";
+import { IconUpload, IconX } from "@tabler/icons-react";
 
 const CreateServerModal: React.FC = () => {
   const { isOpen, closeModal } = useModal("CreateServer");
@@ -30,9 +31,25 @@ const CreateServerModal: React.FC = () => {
                   accept={IMAGE_MIME_TYPE}
                   className={classes.dropzone}
                 >
-                  <Group
-                    style={{ minHeight: rem(100), pointerEvents: "none" }}
-                  ></Group>
+                  <Group style={{ minHeight: rem(100), pointerEvents: "none" }}>
+                    <Dropzone.Accept>
+                      <IconUpload size={"3.2rem"} stroke={1.5} />
+                    </Dropzone.Accept>
+                    <Dropzone.Reject>
+                      <IconX size={"3.2rem"} stroke={1.5} />
+                    </Dropzone.Reject>
+                    <Dropzone.Idle>
+                      <IconUpload size={"3.2rem"} stroke={1.5} />
+                    </Dropzone.Idle>
+                    <>
+                      <Text size="xl" inline>
+                        Drag images here or click to select files
+                      </Text>
+                      <Text size="sm" inline mt={7}>
+                        Upload the server icon
+                      </Text>
+                    </>
+                  </Group>
                 </Dropzone>
               )}
             </Flex>
