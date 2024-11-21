@@ -11,3 +11,16 @@
     var(--mantine-color-dark-8)
   );
 }
+
+.link {
+  width: rem(50);
+  height: rem(50);
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  transition: background-color 300ms ease-in-out;
+  &:hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-2),
+      var(--mantine-color-dark-5)
+    );
+  }
+}
