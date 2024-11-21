@@ -1,3 +1,13 @@
-.navbar{
-    
+.navbar {
+  width: rem(80);
+  height: 100vh;
+  inset: 0;
+  position: fixed;
+  padding: var(--mantine-spacing-md);
+  display: flex;
+  flex-direction: column;
+  background-color: light-dark(
+    var(--mantine-color-gray-3),
+    var(--mantine-color-dark-8)
+  );
 }

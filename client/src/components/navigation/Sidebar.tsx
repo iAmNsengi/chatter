@@ -14,6 +14,8 @@ const Sidebar = () => {
         >
           <IconPlus radius={100} />
         </Button>
+      </Center>
+      <Center>
         <Button variant="subtle" className={classes.link}>
           <IconArrowsJoin radius={100} />
         </Button>
