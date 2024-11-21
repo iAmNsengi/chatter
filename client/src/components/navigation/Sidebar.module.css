@@ -18,11 +18,12 @@
   margin-top: rem(5);
   height: rem(50);
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
-  transition: background-color 300ms ease-in-out;
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
   &:hover {
     background-color: light-dark(
       var(--mantine-color-gray-2),
       var(--mantine-color-dark-6)
     );
+    color: light-dark(var(--mantine-color-dark-0), var(--mantine-color-gray-7));
   }
 }
