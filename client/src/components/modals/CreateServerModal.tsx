@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import useModal from "../../hooks/useModal";
 import { useForm } from "@mantine/form";
-import { Dropzone, DropzoneProps, IMAGE_MIME_TYPE } from "@mantine/dropzone";
+import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import classes from "./CreateServerModal.module.css";
 import { IconUpload, IconX } from "@tabler/icons-react";
 
@@ -29,6 +29,7 @@ const CreateServerModal: React.FC = () => {
     if (files.length === 0) return setImagePreview(null);
     const reader = new FileReader();
     reader.onload = (e) => {
+      console.log(e.target?.result);
       setImagePreview(e.target?.result as string);
     };
     setFile(files[0]);
@@ -88,7 +89,7 @@ const CreateServerModal: React.FC = () => {
                     >
                       <IconX color="white" />
                     </Button>
-                    <Image src={imagePreview} w={rem(150)} h={rem(150)} />
+                    <Image src={imagePreview} w={rem(250)} h={rem(150)} />
                   </>
                 </Flex>
               )}
