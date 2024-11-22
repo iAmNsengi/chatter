@@ -7,6 +7,7 @@ import {
   rem,
   Stack,
   Text,
+  TextInput,
 } from "@mantine/core";
 import React, { useState } from "react";
 import useModal from "../../hooks/useModal";
@@ -85,14 +86,26 @@ const CreateServerModal: React.FC = () => {
                         width: rem(30),
                         borderRadius: "50%",
                         top: 0,
+                        right: 10,
                       }}
                     >
                       <IconX color="white" />
                     </Button>
-                    <Image src={imagePreview} w={rem(250)} h={rem(150)} />
+                    <Image
+                      radius={"50%"}
+                      src={imagePreview}
+                      w={rem(150)}
+                      h={rem(150)}
+                    />
                   </>
                 </Flex>
               )}
+              <TextInput
+                style={{ marginTop: "10px" }}
+                label={"Server name"}
+                placeholder="Enter server name..."
+                {...form.getInputProps("name")}
+              />
             </Flex>
           </Stack>
         </form>
