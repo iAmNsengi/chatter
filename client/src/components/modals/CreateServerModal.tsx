@@ -36,13 +36,20 @@ const CreateServerModal: React.FC = () => {
     setFile(files[0]);
     reader.readAsDataURL(files[0]);
   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const validationResult = form.validate();
+    if (validationResult.hasErrors) {
+      return;
+    }
+  };
   return (
     <div>
       <Modal title={"Create a Server"} opened={isOpen} onClose={closeModal}>
         <Text c="dimmed">
           Give your server a personality with a name you can always change later
         </Text>
-        <form onSubmit={() => form.onSubmit(() => {})}>
+        <form onSubmit={handleSubmit}>
           <Stack>
             <Flex justify={"center"} align={"center"} direction={"column"}>
               {!imagePreview && (
@@ -100,13 +107,17 @@ const CreateServerModal: React.FC = () => {
                   </>
                 </Flex>
               )}
-              <TextInput
-                style={{ marginTop: "10px" }}
-                label={"Server name"}
-                placeholder="Enter server name..."
-                {...form.getInputProps("name")}
-              />
             </Flex>
+            <TextInput
+              style={{ marginTop: "10px" }}
+              label={"Server name"}
+              placeholder="Enter server name..."
+              {...form.getInputProps("name")}
+              error={form.errors.name}
+            />
+            <Button w={"30%"} type="submit" variant="gradient" mt={"md"}>
+              Create Server
+            </Button>
           </Stack>
         </form>
       </Modal>
