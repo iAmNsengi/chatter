@@ -115,7 +115,13 @@ const CreateServerModal: React.FC = () => {
               {...form.getInputProps("name")}
               error={form.errors.name}
             />
-            <Button w={"30%"} type="submit" variant="gradient" mt={"md"}>
+            <Button
+              disabled={form.errors.name ? true : false}
+              w={"30%"}
+              type="submit"
+              variant="gradient"
+              mt={"md"}
+            >
               Create Server
             </Button>
           </Stack>
