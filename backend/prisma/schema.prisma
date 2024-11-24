@@ -34,8 +34,6 @@ model Server {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  directMessages DirectMessage[] @relation("ServerDirectMessages")
-
   @@index([profileId])
 }
 
@@ -124,8 +122,7 @@ model DirectMessage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Server   Server? @relation("ServerDirectMessages", fields: [serverId], references: [id])
-  serverId Int?
+  @@index([memberId, conversationId])
 }
 
 model Conversation {
