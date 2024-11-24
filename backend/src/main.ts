@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
+// import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +14,9 @@ async function bootstrap() {
       'apollo-require-preflight',
     ],
   });
+  const { default: graphqlUploadExpress } = await import(
+    'graphql-upload/graphqlUploadExpress.mjs'
+  );
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 1 }));
   await app.listen(process.env.PORT ?? 3000);
 }
