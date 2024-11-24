@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Channel, Server } from 'src/server/types';
 
 @ObjectType()
@@ -18,6 +18,6 @@ export class Profile {
   @Field()
   imageUrl: string;
 
-  @Field(() => Channel, { nullable: 'itemsAndList' })
+  @Field(() => Channel, { nullable: true })
   channels: Channel[];
 }
