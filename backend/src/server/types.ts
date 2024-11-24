@@ -1,5 +1,6 @@
-import { Field, ObjectType, ObjectType } from '@nestjs/graphql';
-import { isNullableType } from 'graphql';
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { Member } from 'src/member/member.types';
+import { Profile } from 'src/profile/profile.type';
 
 @ObjectType()
 export class Channel {
@@ -28,7 +29,7 @@ export enum ChannelType {
   VIDEO = 'VIDEO',
 }
 
-registerdEnumType(ChannelType, {
+registerEnumType(ChannelType, {
   name: 'ChannelType',
   description: 'Defines the type of the channel',
 });
