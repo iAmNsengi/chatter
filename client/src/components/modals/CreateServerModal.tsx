@@ -1,4 +1,14 @@
-import { Flex, Group, Modal, rem, Stack, Text } from "@mantine/core";
+import {
+  Button,
+  Flex,
+  Group,
+  Image,
+  Modal,
+  rem,
+  Stack,
+  Text,
+  TextInput,
+} from "@mantine/core";
 import React, { useState } from "react";
 import useModal from "../../hooks/useModal";
 import { useForm } from "@mantine/form";
@@ -15,19 +25,37 @@ const CreateServerModal: React.FC = () => {
     },
   });
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const handleDropZoneChange = (files: File[]) => {
+    if (files.length === 0) return setImagePreview(null);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log(e.target?.result);
+      setImagePreview(e.target?.result as string);
+    };
+    setFile(files[0]);
+    reader.readAsDataURL(files[0]);
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const validationResult = form.validate();
+    if (validationResult.hasErrors) {
+      return;
+    }
+  };
   return (
     <div>
       <Modal title={"Create a Server"} opened={isOpen} onClose={closeModal}>
         <Text c="dimmed">
           Give your server a personality with a name you can always change later
         </Text>
-        <form onSubmit={() => form.onSubmit(() => {})}>
+        <form onSubmit={handleSubmit}>
           <Stack>
             <Flex justify={"center"} align={"center"} direction={"column"}>
               {!imagePreview && (
                 <Dropzone
                   mt={"md"}
-                  onDrop={() => {}}
+                  onDrop={handleDropZoneChange}
                   accept={IMAGE_MIME_TYPE}
                   className={classes.dropzone}
                 >
@@ -52,7 +80,50 @@ const CreateServerModal: React.FC = () => {
                   </Group>
                 </Dropzone>
               )}
+              {imagePreview && (
+                <Flex pos={"relative"} w={rem(150)} h={rem(150)} mt={"md"}>
+                  <>
+                    <Button
+                      onClick={() => setImagePreview(null)}
+                      color="red"
+                      pos="absolute"
+                      style={{
+                        padding: 0,
+                        zIndex: 1,
+                        width: rem(30),
+                        borderRadius: "50%",
+                        top: 0,
+                        right: 10,
+                      }}
+                    >
+                      <IconX color="white" />
+                    </Button>
+                    <Image
+                      radius={"50%"}
+                      src={imagePreview}
+                      w={rem(150)}
+                      h={rem(150)}
+                    />
+                  </>
+                </Flex>
+              )}
             </Flex>
+            <TextInput
+              style={{ marginTop: "10px" }}
+              label={"Server name"}
+              placeholder="Enter server name..."
+              {...form.getInputProps("name")}
+              error={form.errors.name}
+            />
+            <Button
+              disabled={form.errors.name ? true : false}
+              w={"30%"}
+              type="submit"
+              variant="gradient"
+              mt={"md"}
+            >
+              Create Server
+            </Button>
           </Stack>
         </form>
       </Modal>
