@@ -1,6 +1,8 @@
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
 import { onError } from "@apollo/client/link/error";
+import { ApolloCache, InMemoryCache } from "@apollo/client/cache";
+import { ApolloClient } from "@apollo/client/core";
 
 const getCookie = (name: string) => {
   const value = `;  ${document.cookie}`;
@@ -37,7 +39,12 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
-
 // todo splitlink for websockets http
 
+const cache = new InMemoryCache();
+const client = new ApolloClient({
+  link: authLink.concat(uploadLink).concat(errorLink),
+  cache,
+});
 
+export default client;
