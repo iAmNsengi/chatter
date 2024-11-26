@@ -9,5 +9,5 @@ export class CreateServerDTO {
 
   @IsString()
   @Field()
-  profileId: string;
+  profileId: number;
 }
