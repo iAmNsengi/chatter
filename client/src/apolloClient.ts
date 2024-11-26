@@ -1,7 +1,7 @@
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
 import { onError } from "@apollo/client/link/error";
-import { ApolloCache, InMemoryCache } from "@apollo/client/cache";
+import { InMemoryCache } from "@apollo/client/cache";
 import { ApolloClient } from "@apollo/client/core";
 
 const getCookie = (name: string) => {
@@ -43,7 +43,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
-  link: authLink.concat(uploadLink).concat(errorLink),
+  link: authLink.concat(uploadLink.concat(errorLink)),
   cache,
 });
 
