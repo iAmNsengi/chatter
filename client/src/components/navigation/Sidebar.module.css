@@ -6,10 +6,12 @@
   padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: light-dark(
     var(--mantine-color-gray-3),
     var(--mantine-color-dark-9)
   );
+  padding: 20px 0px;
 }
 
 .link {
