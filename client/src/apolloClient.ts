@@ -1,5 +1,5 @@
 import { setContext } from "@apollo/client/link/context";
-import { createUploadLink } from "apollo-upload-client";
+import { createHttpLink } from "@apollo/client/link/http";
 import { onError } from "@apollo/client/link/error";
 import { InMemoryCache } from "@apollo/client/cache";
 import { ApolloClient } from "@apollo/client/core";
@@ -20,7 +20,7 @@ const authLink = setContext(async (_, { Headers }) => {
   };
 });
 
-const uploadLink = createUploadLink({
+const uploadLink = createHttpLink({
   uri: "http://localhost:3000/graphql",
   headers: {
     "apollo-require-preflight": "true",
