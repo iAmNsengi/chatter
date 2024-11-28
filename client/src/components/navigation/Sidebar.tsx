@@ -15,39 +15,43 @@ const Sidebar = () => {
 
   return (
     <nav className={classes.navbar}>
-      <Center>
-        <UserButton />
-      </Center>
-      <Center>
-        <Button
-          variant="subtle"
-          radius={100}
-          className={classes.link}
-          onClick={createServerModal.openModal}
-        >
-          <IconPlus radius={100} />
-        </Button>
-      </Center>
-      <Center>
-        <Button
-          variant="subtle"
-          radius={100}
-          className={classes.link}
-          onClick={() => {}}
-        >
-          <IconArrowsJoin radius={100} />
-        </Button>
-      </Center>
-      <Stack justify="center" align="center">
-        <Button
-          className={classes.link}
-          variant="subtle"
-          onClick={toggleColorScheme}
-          radius={100}
-        >
-          {colorScheme === "dark" ? <IconMoon radius={100} /> : <IconSun />}
-        </Button>
-      </Stack>
+      <div>
+        <Center>
+          <Button
+            variant="subtle"
+            radius={100}
+            className={classes.link}
+            onClick={createServerModal.openModal}
+          >
+            <IconPlus radius={100} />
+          </Button>
+        </Center>
+        <Center>
+          <Button
+            variant="subtle"
+            radius={100}
+            className={classes.link}
+            onClick={() => {}}
+          >
+            <IconArrowsJoin radius={100} />
+          </Button>
+        </Center>
+      </div>
+      <div className="bottom">
+        <Stack justify="center" align="center">
+          <Button
+            className={classes.link}
+            variant="subtle"
+            onClick={toggleColorScheme}
+            radius={100}
+          >
+            {colorScheme === "dark" ? <IconMoon radius={100} /> : <IconSun />}
+          </Button>
+        </Stack>
+        <Center>
+          <UserButton />
+        </Center>
+      </div>
     </nav>
   );
 };

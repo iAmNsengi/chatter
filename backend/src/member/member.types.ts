@@ -21,7 +21,7 @@ export class Member {
 
   @Field({ nullable: true })
   imageUrl: string;
-
+f
   @Field({ nullable: true })
   email: string;
 
