@@ -4,6 +4,7 @@ import { Server } from './types';
 import { UseGuards } from '@nestjs/common';
 import { GraphlAuthGuard } from 'src/auth/auth.guard';
 import { ApolloError } from 'apollo-server-express';
+import { Request } from 'express';
 
 @Resolver()
 export class ServerResolver {
@@ -13,7 +14,7 @@ export class ServerResolver {
     @Args('profileId') profileId: number,
     @Context() ctx: { req: Request },
   ) {
-    if (!ctx.req.profile.email)
+    if (!ctx.req.profile?.email)
       return new ApolloError('Profile not found', 'PROFILE_NOT_FOUND');
   }
 }
